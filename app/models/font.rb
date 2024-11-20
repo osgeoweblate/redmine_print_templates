@@ -1,5 +1,5 @@
 # app/models/font.rb
-class Font < ActiveRecord::Base
+class Font < (defined?(ApplicationRecord) == 'constant' ? ApplicationRecord : ActiveRecord::Base)
   validates :name, presence: true, uniqueness: true
   validates :data, presence: true
   validate :limit_number_of_fonts

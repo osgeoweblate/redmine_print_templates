@@ -1,4 +1,4 @@
-class PrintTemplate < ActiveRecord::Base
+class PrintTemplate < (defined?(ApplicationRecord) == 'constant' ? ApplicationRecord : ActiveRecord::Base)
   belongs_to :tracker
 
   validates :name, presence: true

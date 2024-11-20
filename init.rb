@@ -1,5 +1,4 @@
-# Global Hooks
-require File.expand_path('../lib/redmine_print_templates/view_hooks', __FILE__)
+require_relative 'lib/redmine_print_templates/view_hooks'
 
 Redmine::Plugin.register :redmine_print_templates do
   name 'Redmine Print Templates plugin'
@@ -7,9 +6,9 @@ Redmine::Plugin.register :redmine_print_templates do
   author_url 'https://github.com/georepublic'
   url 'https://github.com/gtt-project/redmine_print_templates'
   description 'Enables printing templates with PDFme in Redmine deployments'
-  version '0.3.0'
+  version '0.4.0'
 
-  requires_redmine :version_or_higher => '5.0.0'
+  requires_redmine :version_or_higher => '6.0.0'
 
   settings(
     default: {
@@ -30,6 +29,6 @@ Redmine::Plugin.register :redmine_print_templates do
 
   menu :admin_menu, :print_templates, { controller: 'print_templates', action: 'index' },
     caption: :label_print_templates_plural,
-    html: { class: 'icon icon-print-templates' }
-
+    html: { class: 'icon icon-print-templates' },
+    :icon => 'print-templates', :plugin => :redmine_print_templates
 end

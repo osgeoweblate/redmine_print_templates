@@ -1,5 +1,4 @@
 class PrintTemplatesPdfmeController < ApplicationController
-  unloadable
   layout false
 
   before_action :authorize_view_print_templates

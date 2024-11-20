@@ -15,7 +15,7 @@
   <td><%= textilizable localized_context(print_template.context) %></td>
   <td>
     <% if print_template.basepdf.present? %>
-      <span class="icon-only icon-ok"></span>
+      <%= content_tag(:span, sprite_icon('checked'), class: 'icon-only icon-ok') %>
     <% end %>
   </td>
   <td><%= delete_link(print_template_path(print_template)) %></td>

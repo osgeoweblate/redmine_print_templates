@@ -8,14 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
     designerOverlay: document.getElementById('designer-fullscreen'),
     iframe: document.getElementById('pdfme-designer-iframe'),
     uploadField: document.getElementById('pdf-upload'),
-    useBlankPdfLink: document.getElementById('use-blank-pdf'),
     templateDownloadBtn: document.getElementById('template_download-designer-fullscreen-btn'),
     templateUploadBtn: document.getElementById('template_upload-designer-fullscreen-btn'),
     templateFileInput: document.getElementById('template-file-input'),
     basepdfIcon: document.getElementById('basepdf-ok-icon')
   };
-
-  // console.log('Print Templates Designer loaded!');
 
   const showError = (message) => {
     console.error(message);
@@ -98,10 +95,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggleBasePDFControls = () => {
     if (elements.basepdfField && elements.basepdfField.value) {
       elements.basepdfIcon.style.display = 'inline';
-      elements.useBlankPdfLink.style.display = 'inline';
     } else {
       elements.basepdfIcon.style.display = 'none';
-      elements.useBlankPdfLink.style.display = 'none';
     }
   };
 
@@ -147,13 +142,11 @@ document.addEventListener("DOMContentLoaded", () => {
     encodeBasePDF(this);
   });
 
-  elements.useBlankPdfLink?.addEventListener('click', (event) => {
+  elements.basepdfIcon?.addEventListener('click', (event) => {
     event.preventDefault();
-    if (elements.basepdfField) {
-      elements.basepdfField.value = '';
-      elements.uploadField.value = '';
-      toggleBasePDFControls();
-    }
+    elements.basepdfField.value = '';
+    elements.uploadField.value = '';
+    toggleBasePDFControls();
   });
 
   elements.openBtn?.addEventListener('click', handleOpenBtnClick);
