@@ -1,6 +1,6 @@
 import {
   line, rectangle, ellipse,
-  tableBeta,
+  table,
   barcodes,
 } from '@pdfme/schemas';
 import plugins from './plugins';
@@ -18,8 +18,8 @@ export const getPlugins = (options: PluginOptions) => {
     Image: plugins.extendedImage(options),
     SVG: plugins.extendedSvg(options),
     // Map: plugins.mapImage(options),
-    SimpleMap: plugins.simpleMap(options),
-    Table: tableBeta,
+    // SimpleMap: plugins.simpleMap(options),
+    Table: table,
     Line: line,
     Rectangle: rectangle,
     Ellipse: ellipse,

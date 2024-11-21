@@ -1,4 +1,4 @@
-import { Template } from '@pdfme/common';
+import type { Template, CommonOptions } from '@pdfme/common';
 import { Designer, Form, Viewer } from '@pdfme/ui';
 import { generate } from '@pdfme/generator';
 
@@ -32,7 +32,7 @@ export async function openDesigner({
       lang: validateLocale(locale),
       theme: themeSettings,
       font: await getAvailableFonts()
-    },
+    } as CommonOptions,
   });
 
   designer.onChangeTemplate((updatedTemplate: Template) => {

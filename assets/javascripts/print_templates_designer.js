@@ -19,6 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
     alert('An error occurred. Please try again.');
   };
 
+  const parseJSON = (str, fallback = []) => {
+    try {
+      return JSON.parse(str);
+    } catch (e) {
+      return fallback;
+    }
+  };
+
   const loadTrackerData = () => {
     if (elements.trackerIdSelect) {
       Rails.ajax({
@@ -57,8 +65,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (templateData.basePdf) {
             elements.basepdfField.value = templateData.basePdf;
+            elements.uploadField.value = templateData.basePdf;
           } else {
-            elements.basepdfField.value = ''; // Reset if 'basePdf' is not provided
+            // Reset if 'basePdf' is not provided
+            elements.basepdfField.value = '';
+            elements.uploadField.value = '';
           }
 
           toggleBasePDFControls();
@@ -104,12 +115,12 @@ document.addEventListener("DOMContentLoaded", () => {
     elements.designerOverlay.style.display = 'block';
     const iframeWindow = elements.iframe.contentWindow;
 
-    const data = {};
-    elements.basepdfField.value ? data.basePdf = elements.basepdfField.value : null;
-    elements.schemasField.value ? data.schemas = JSON.parse(elements.schemasField.value) : null;
-
-    data.fieldKeyOptions = JSON.parse(sessionStorage.getItem('fieldKeyOptions'));
-    data.fieldFormatOptions = JSON.parse(sessionStorage.getItem('fieldFormatOptions'));
+    const data = {
+      basePdf: elements.basepdfField.value || '',
+      schemas: parseJSON(elements.schemasField.value, [[]]), // 1st array for pages, 2nd for fields
+      fieldKeyOptions: parseJSON(sessionStorage.getItem('fieldKeyOptions')),
+      fieldFormatOptions: parseJSON(sessionStorage.getItem('fieldFormatOptions'))
+    };
 
     iframeWindow.postMessage({
       type: 'openDesigner',

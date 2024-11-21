@@ -21,19 +21,21 @@ document.addEventListener("DOMContentLoaded", function() {
         designer = await openDesigner({
           container: document.getElementById('pdfme-container'),
           template: {
-            basePdf: data.basePdf,
-            schemas: data.schemas,
+            basePdf: data.basePdf || null,
+            schemas: data.schemas || [[]],
           },
-          locale: locale,
-          fieldKeyOptions: data.fieldKeyOptions,
-          fieldFormatOptions: data.fieldFormatOptions,
+          locale: locale || 'en',
+          fieldKeyOptions: data.fieldKeyOptions || [],
+          fieldFormatOptions: data.fieldFormatOptions || [],
         });
         break;
+
       case 'downloadTemplate':
         if (designer) {
           downloadTemplate(designer, data.trackerName);
         }
         break;
+
       case 'uploadTemplate':
         if (designer) {
           uploadTemplate(designer, data.templateData);

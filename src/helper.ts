@@ -1,4 +1,5 @@
-import { Template, getDefaultFont } from '@pdfme/common';
+import type { Template } from '@pdfme/common';
+import { getDefaultFont } from '@pdfme/common';
 import { defaultTemplate, supportedLocales } from './constants';
 import type { SupportedLocale } from './types';
 
@@ -54,7 +55,7 @@ export function createTemplate(template: Partial<Template> = {}): Template {
   const finalTemplate: Template = {
     basePdf: isValidValue(template.basePdf) ? template.basePdf : defaultTemplate.basePdf,
     schemas: isValidValue(template.schemas) ? template.schemas : defaultTemplate.schemas,
-    pdfmeVersion: isValidValue(template.pdfmeVersion) ? template.pdfmeVersion : defaultTemplate.pdfmeVersion
+    pdfmeVersion: isValidValue(template.pdfmeVersion) ? template.pdfmeVersion : defaultTemplate.pdfmeVersion,
   };
   return finalTemplate;
 }
@@ -140,11 +141,11 @@ export function mapIssueDataToTemplate(issueData: any, template: Template) {
   const updatedSchemas = template.schemas.map((page) => {
     const updatedPage = { ...page };
     Object.keys(updatedPage).forEach((fieldKey) => {
-      const field = updatedPage[fieldKey];
+      const field = updatedPage[fieldKey as any];
       if (field.field_key) {
         const value = getNestedValue(issueData.issue, field.field_key as string);
         if (value !== undefined) {
-          updatedPage[fieldKey] = {
+          updatedPage[fieldKey as any] = {
             ...field,
             content: value
           };
