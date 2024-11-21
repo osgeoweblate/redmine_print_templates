@@ -1,6 +1,7 @@
 import type { Plugin } from '@pdfme/common';
 import { image as component } from '@pdfme/schemas';
-import { createPDFRender, createUIRender, createSchemaFunction, ExtendedSchema } from './schemaUtils';
+import type { ExtendedSchema } from './schemaUtils';
+import { createPDFRender, createUIRender, extendSchema } from './schemaUtils';
 
 const extendedImage = (
   fieldKeyOptions: { label: string; options: { label: string; value: string }[] }[],
@@ -11,7 +12,7 @@ const extendedImage = (
     type: 'extendedImage',
   };
 
-  const schemaFunction = createSchemaFunction(component.propPanel.schema, fieldKeyOptions, fieldFormatOptions);
+  const schemaFunction = extendSchema(component.propPanel.schema, fieldKeyOptions, fieldFormatOptions);
 
   const propPanel = {
     defaultSchema,

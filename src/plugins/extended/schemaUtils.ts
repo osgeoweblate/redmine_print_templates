@@ -26,7 +26,7 @@ const createUIRender = (component: any) => {
   };
 };
 
-const createSchemaFunction = (
+const extendSchema = (
   originalSchema: PropPanelSchema | ((props: Omit<PropPanelWidgetProps, 'rootElement'>) => PropPanelSchema),
   fieldKeyOptions: { label: string; options: { label: string; value: string }[] }[],
   fieldFormatOptions: { label: string; value: string }[]
@@ -74,4 +74,5 @@ const createSchemaFunction = (
   };
 };
 
-export { createPDFRender, createUIRender, createSchemaFunction, ExtendedSchema };
+export type { ExtendedSchema };
+export { createPDFRender, createUIRender, extendSchema };

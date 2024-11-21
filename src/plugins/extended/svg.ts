@@ -1,6 +1,7 @@
 import type { Plugin } from '@pdfme/common';
 import { svg as component } from '@pdfme/schemas';
-import { createPDFRender, createUIRender, createSchemaFunction, ExtendedSchema } from './schemaUtils';
+import type { ExtendedSchema } from './schemaUtils';
+import { createPDFRender, createUIRender, extendSchema } from './schemaUtils';
 
 const extendedSvg = (
   fieldKeyOptions: { label: string; options: { label: string; value: string }[] }[],
@@ -11,7 +12,7 @@ const extendedSvg = (
     type: 'extendedSvg',
   };
 
-  const schemaFunction = createSchemaFunction(component.propPanel.schema, fieldKeyOptions, fieldFormatOptions);
+  const schemaFunction = extendSchema(component.propPanel.schema, fieldKeyOptions, fieldFormatOptions);
 
   const propPanel = {
     defaultSchema,
