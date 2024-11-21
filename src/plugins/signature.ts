@@ -35,7 +35,7 @@ export const signature: Plugin<Signature> = {
       console.error(e);
     }
 
-    if (mode === 'viewer') {
+    if (mode === 'viewer' || (mode === 'form' && schema.readOnly)) {
       signaturePad.off();
     } else {
       signaturePad.on();
@@ -58,6 +58,7 @@ export const signature: Plugin<Signature> = {
   propPanel: {
     schema: {},
     defaultSchema: {
+      name: '',
       type: 'signature',
       content: '',
       position: { x: 0, y: 0 },
