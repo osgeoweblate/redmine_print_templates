@@ -1,4 +1,4 @@
-import { Plugin } from '@pdfme/common';
+import type { Plugin } from '@pdfme/common';
 import { mapImage } from '../map';
 import { createPDFRender, createUIRender, createSchemaFunction, ExtendedSchema } from './schemaUtils';
 
@@ -25,6 +25,7 @@ const extendedMap = (
     pdf: createPDFRender(component),
     ui: createUIRender(component),
     propPanel,
+    icon: component.icon,
   };
 
   return extendedSchema;

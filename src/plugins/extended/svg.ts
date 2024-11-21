@@ -23,6 +23,7 @@ const extendedSvg = (
     pdf: createPDFRender(component),
     ui: createUIRender(component),
     propPanel,
+    icon: component.icon,
   };
 
   return extendedSchema;

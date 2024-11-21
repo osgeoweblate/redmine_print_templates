@@ -4,7 +4,6 @@ interface ExtendedSchema extends Schema {
   field_key?: string;
   field_format?: string;
   field_options?: string;
-  readOnly?: boolean;
 };
 
 const createPDFRender = (component: any) => {
@@ -44,12 +43,6 @@ const createSchemaFunction = (
     }
 
     return {
-      readOnly: {
-        title: 'Read Only',
-        type: 'boolean',
-        widget: 'switch',
-        span: 8,
-      },
       field_key: {
         title: 'Field Key',
         type: 'string',
